@@ -2,12 +2,12 @@ from flask.views import MethodView
 from flask_smorest import Blueprint, abort
 from flask_jwt_extended import get_jwt_identity, jwt_required, get_jwt
 from sqlalchemy.exc import SQLAlchemyError
-
+from flask_cors import CORS
 from models import ItemModel
 from schemas import ItemSchema, ItemUpdateSchema
 
 blp = Blueprint("Items", "items", description="Operations on items")
-
+CORS(blp)
 
 @blp.route("/item/<string:name>")
 class Item(MethodView):
@@ -19,7 +19,7 @@ class Item(MethodView):
             return item
         abort(404, message="Item not found")
 
-    @jwt_required(fresh=True)
+    @jwt_required()
     @blp.arguments(ItemSchema)
     @blp.response(201, ItemSchema)
     def post(self, item_data, name):
@@ -37,10 +37,6 @@ class Item(MethodView):
 
     @jwt_required()
     def delete(self, name):
-        jwt = get_jwt()
-        if not jwt["is_admin"]:
-            abort(401, message="Admin privilege required.")
-
         item = ItemModel.find_by_name(name)
         if item:
             item.delete_from_db()
