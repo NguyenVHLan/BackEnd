@@ -43,7 +43,7 @@ def post(id):
     # Nén và dữ liệu đặc trưng
     compressed_data = compress_and_encode_data(keypoints, descriptors)
     # Mã hóa dữ liệu bằng AES
-    key = b'\xc2\xe2\xa8B\xf8#\x87\xe5\xe5\x9d\xee\xdc5\t\xf6\xe1/\x9af\x1c\xef\rP1\xce\xe1`\xa1\x89\x83C]'
+    key = b'\xae,\x8b\xb3\xc3=s\x8b\x0f\xf1\xb6z"^\xc6o\x16\xac_k\xdc\x12\x16\xb5{zN2\xb4-4\x14'
     iv =b'1234567891234567'
     encrypted_user_id=encrypt(str(id).encode('utf-8'), key,iv)
     encrypted_compressed_data = encrypt(compressed_data, key,iv)

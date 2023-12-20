@@ -44,7 +44,7 @@ def post():
     # Chia dữ liệu
     split_data_parts = qr_code_data.split('.')
     # Giải mã dữ liệu bằng AES
-    key = b'\xc2\xe2\xa8B\xf8#\x87\xe5\xe5\x9d\xee\xdc5\t\xf6\xe1/\x9af\x1c\xef\rP1\xce\xe1`\xa1\x89\x83C]'
+    key = b'\xae,\x8b\xb3\xc3=s\x8b\x0f\xf1\xb6z"^\xc6o\x16\xac_k\xdc\x12\x16\xb5{zN2\xb4-4\x14'
     iv =b'1234567891234567'
     # Giải mã dữ liệu người dùng
     user_data = decrypt(split_data_parts[0], key, iv)
